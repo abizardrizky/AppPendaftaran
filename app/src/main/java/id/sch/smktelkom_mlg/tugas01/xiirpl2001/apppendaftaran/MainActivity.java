@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.RadioButton;
 import android.widget.Spinner;
@@ -16,6 +17,7 @@ public class MainActivity extends AppCompatActivity {
     TextView tvHasil;
     Spinner spKelas;
     RadioButton rbAsp, rbAndroid, rbJava, rbOracle;
+    CheckBox cbJumat, cbSabtu, cbMinggu;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,6 +34,9 @@ public class MainActivity extends AppCompatActivity {
         rbAndroid = (RadioButton) findViewById(R.id.radioButtonAndroid);
         rbJava = (RadioButton) findViewById(R.id.radioButtonJava);
         rbOracle = (RadioButton) findViewById(R.id.radioButtonOracle);
+        cbJumat = (CheckBox) findViewById(R.id.checkBoxJumat);
+        cbSabtu = (CheckBox) findViewById(R.id.checkBoxSabtu);
+        cbMinggu = (CheckBox) findViewById(R.id.checkBoxMinggu);
 
         findViewById(R.id.buttonOk).setOnClickListener(new View.OnClickListener() {
             @Override
@@ -59,12 +64,20 @@ public class MainActivity extends AppCompatActivity {
             ket = "Anda belum memilih kelas extra";
         }
 
+        String hari = "";
+        int startlen = hari.length();
+        if (cbJumat.isChecked()) hari += cbJumat.getText().toString() + ", ";
+        if (cbSabtu.isChecked()) hari += cbSabtu.getText().toString() + ", ";
+        if (cbMinggu.isChecked()) hari += cbMinggu.getText().toString() + "";
+        if (hari.length() == startlen) hari = "Anda belum memilih hari pembelajaran";
+
         if (isValid()) {
-            tvHasil.setText("Nama : " + nama +
-                    "\nNIS : " + nis +
-                    "\nEmail : " + email +
-                    "\nKelas : " + spKelas.getSelectedItem().toString() +
-                    "\nKelas yang diikuti : " + ket);
+            tvHasil.setText("Nama \t\t\t\t\t\t\t: " + nama +
+                    "\nNIS \t\t\t\t\t\t\t\t: " + nis +
+                    "\nEmail \t\t\t\t\t\t\t: " + email +
+                    "\nKelas \t\t\t\t\t\t\t: " + spKelas.getSelectedItem().toString() +
+                    "\nKelas yang diikuti \t\t: " + ket +
+                    "\nHari \t\t\t\t\t\t\t: " + hari);
         }
     }
 
