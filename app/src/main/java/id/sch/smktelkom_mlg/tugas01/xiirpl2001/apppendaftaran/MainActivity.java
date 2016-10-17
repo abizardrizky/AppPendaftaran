@@ -5,6 +5,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.RadioButton;
 import android.widget.Spinner;
 import android.widget.TextView;
 
@@ -14,6 +15,7 @@ public class MainActivity extends AppCompatActivity {
     Button btOk;
     TextView tvHasil;
     Spinner spKelas;
+    RadioButton rbAsp, rbAndroid, rbJava, rbOracle;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -26,6 +28,10 @@ public class MainActivity extends AppCompatActivity {
         btOk = (Button) findViewById(R.id.buttonOk);
         tvHasil = (TextView) findViewById(R.id.textViewHasil);
         spKelas = (Spinner) findViewById(R.id.spinnerKelas);
+        rbAsp = (RadioButton) findViewById(R.id.radioButtonAsp);
+        rbAndroid = (RadioButton) findViewById(R.id.radioButtonAndroid);
+        rbJava = (RadioButton) findViewById(R.id.radioButtonJava);
+        rbOracle = (RadioButton) findViewById(R.id.radioButtonOracle);
 
         findViewById(R.id.buttonOk).setOnClickListener(new View.OnClickListener() {
             @Override
@@ -40,11 +46,25 @@ public class MainActivity extends AppCompatActivity {
         String nis = etNis.getText().toString();
         String email = etEmail.getText().toString();
 
+        String ket = null;
+        if (rbAsp.isChecked()) {
+            ket = rbAsp.getText().toString();
+        } else if (rbAndroid.isChecked()) {
+            ket = rbAndroid.getText().toString();
+        } else if (rbJava.isChecked()) {
+            ket = rbJava.getText().toString();
+        } else if (rbOracle.isChecked()) {
+            ket = rbOracle.getText().toString();
+        } else {
+            ket = "Anda belum memilih kelas extra";
+        }
+
         if (isValid()) {
             tvHasil.setText("Nama : " + nama +
                     "\nNIS : " + nis +
                     "\nEmail : " + email +
-                    "\nKelas : " + spKelas.getSelectedItem().toString());
+                    "\nKelas : " + spKelas.getSelectedItem().toString() +
+                    "\nKelas yang diikuti : " + ket);
         }
     }
 
