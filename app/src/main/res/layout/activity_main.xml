@@ -38,6 +38,12 @@
         android:layout_height="wrap_content"
         android:hint="Email" />
 
+    <TextView
+        android:id="@+id/textView3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Kelas" />
+
     <Spinner
         android:id="@+id/spinnerKelas"
         android:layout_width="match_parent"
